@@ -1,0 +1,60 @@
+:root {
+  /* colors */
+  --background-color: #eee;
+  --text-color: #555;
+
+  /* fonts */
+  --body-font-family: forma-djr-display, sans-serif;
+  --heading-font-family: var(--body-font-family);
+
+  /* body sizes */
+  --body-font-size-m: 22px;
+  --body-font-size-s: 18px;
+  --body-font-size-xs: 12px;
+
+  /* heading sizes */
+  --heading-font-size-xxl: 42px;
+  --heading-font-size-xl: 36px;
+  --heading-font-size-l: 32px;
+  --heading-font-size-m: 26px;
+  --heading-font-size-s: 18px;
+  --heading-font-size-xs: 12px;
+
+  /* nav height */
+  --nav-height: 64px;
+
+  /* input styling */
+  --border-radius: 1px;
+}
+
+body {
+  margin: 10px;
+  line-height: 1.6;
+  color: var(--text-color);
+  font-family: var(--body-font-family);
+  font-weight: 400;
+  font-style: normal;
+  background-color: var(--background-color);
+  display: block;
+}
+
+#main {
+  margin-top: 12px;
+}
+
+#vocabulary {
+  display: grid;
+  grid-gap: 12px;
+  grid-template-columns: 1fr 1fr 1fr;
+  list-style: none;
+}
+
+#start {
+  padding: 12px;
+}
+
+#sheet {
+  padding: 12px;
+  margin-right: 8px;
+  width:400px;
+}

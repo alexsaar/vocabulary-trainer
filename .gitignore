@@ -1,3 +1,6 @@
+# IDEs
+*.code-workspace
+
 # Logs
 logs
 *.log

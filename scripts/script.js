@@ -1,6 +1,7 @@
 // Google API key and URL
 const API_KEY = 'AIzaSyCgyvKMsB4BSrP9fuo2Ev7o-TMDiw8BlNI';
 const API_URL = 'https://sheets.googleapis.com/v4/spreadsheets/';
+const tada = new Audio('/res/sound/tada.mp3');
 
 function showMsg(msg) {
     $('#msg').text(msg);
@@ -25,11 +26,10 @@ async function getVocabulary() {
 
 function prepareResults(vocabulary) {
     // create header
-    $('#content').html("<div id='vocabulary'>"
-        + "<div class='header'>Word</div>"
+    $('#vocabulary').html("<div class='header'>Word</div>"
         + "<div class='header'>Your answer</div>"
         + "<div class='header'>Result</div>"
-        + "<div class='header' style='display:none'>Expected</div></div>");
+        + "<div class='header' style='display:none'>Expected</div>");
 
     // add vocabulary entries
     $.each(vocabulary.values.slice(1), function(i, item) {
@@ -110,6 +110,7 @@ function finishLearning() {
     let percentage = learningStats.hits / learningStats.tests * 100;
     showMsg(`Congratulations! You achieved ${percentage}% with ${learningStats.hits} correct answers out of ${learningStats.tests}.`);
     toggleSpeechRecognition();
+    tada.play();
 }
 
 // register listeners

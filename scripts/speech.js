@@ -9,7 +9,8 @@ if (!('webkitSpeechRecognition' in window)) {
 
     recognition.onstart = function() {
         recognizing = true;
-        showMsg('Speak now!');
+        $('#mic-on').addClass("pulse");
+        showMsg('Speak now to provide your answer!')
     };
     
     recognition.onerror = function(event) {
@@ -29,6 +30,7 @@ if (!('webkitSpeechRecognition' in window)) {
             }
             ignore_onend = true;
         }
+        $('#mic-on').removeClass("pulse");
     };
     
     recognition.onend = function() {
@@ -37,10 +39,9 @@ if (!('webkitSpeechRecognition' in window)) {
             return;
         }
         if (!final_transcript) {
-          showMsg('Click on the microphone icon and begin speaking for as long as you like.');
           return;
         }
-        showMsg('');
+        $('#mic-on').removeClass("pulse");
         if (window.getSelection) {
             window.getSelection().removeAllRanges();
             var range = document.createRange();

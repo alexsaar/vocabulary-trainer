@@ -19,11 +19,15 @@
           <div>
             <div>Welcome! Let's get started.</div>
             <!-- https://docs.google.com/spreadsheets/d/1RjbVeTpYuQHtJWUvmNP9nK1xdlfkY3xojM7WPDIa66c/edit -->
-            <div><input id="sheet" type="text" value=""><button id="start">Start</button></div>
+            <div id="inputs">
+              <input id="sheet" type="text" placeholder="Please enter the URL of your sheet here.">
+              <button id="start" type="submit">
+                <img id="mic-on" class="mic" src="/res/img/mic-on.jpg">
+              </button>
+            </div>
           </div>
           <div id="msg"></div>
           <div id="content"></div>
-          <img id="mic-on" class="mic" src="/res/img/mic-on.jpg">
         </div>
     </main>
     <footer>Created with &hearts; by dad.</footer>

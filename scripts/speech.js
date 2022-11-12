@@ -35,18 +35,12 @@ if (!('webkitSpeechRecognition' in window)) {
     
     recognition.onend = function() {
         recognizing = false;
+        $('#mic-on').removeClass("pulse");
         if (ignore_onend) {
             return;
         }
         if (!final_transcript) {
           return;
-        }
-        $('#mic-on').removeClass("pulse");
-        if (window.getSelection) {
-            window.getSelection().removeAllRanges();
-            var range = document.createRange();
-            range.selectNode(document.getElementById('final_span'));
-            window.getSelection().addRange(range);
         }
     };
     
@@ -65,19 +59,14 @@ if (!('webkitSpeechRecognition' in window)) {
                 interim_transcript += event.results[i][0].transcript;
             }
         }
-        final_transcript = capitalize(final_transcript);
-        console.log(linebreak(final_transcript));
-        console.log(linebreak(interim_transcript));
+        //console.log("final " + linebreak(final_transcript));
+        console.log("interim " + linebreak(interim_transcript));
     };
 }
 
 var two_line = /\n\n/g;
 var one_line = /\n/g;
 function linebreak(s) {
-    return s.replace(two_line, '<p></p>').replace(one_line, '<br>');
-}
-
-var first_char = /\S/;
-function capitalize(s) {
-    return s.replace(first_char, function(m) { return m.toUpperCase(); });
+    // return s.replace(two_line, '<p></p>').replace(one_line, '<br>');
+    return s.replace(two_line, '').replace(one_line, '');
 }

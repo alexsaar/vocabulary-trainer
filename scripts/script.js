@@ -44,7 +44,7 @@ function prepareResults(vocabulary) {
     }
 }
 
-function startSpeechRecognition() {
+function toggleSpeechRecognition() {
     // start speech recognition
     if (recognizing) {
         recognition.stop();
@@ -63,13 +63,22 @@ async function startLearning() {
     let vocabulary = await getVocabulary();
     if (vocabulary) {
         prepareResults(vocabulary)
-        startSpeechRecognition();
+        toggleSpeechRecognition();
     }
+}
+
+function finishLearning() {
+    showMsg("You completed your test.");
+    toggleSpeechRecognition();
 }
 
 // register listeners
 $("#start").on("click", function(event) {
-    startLearning();
+    if (recognizing) {
+        finishLearning();
+    } else {
+        startLearning();
+    }
 });
 $('#sheet').on("keypress", function(event) {
     if (event.code == 'Enter') {

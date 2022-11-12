@@ -60,7 +60,8 @@ if (!('webkitSpeechRecognition' in window)) {
             }
         }
         //console.log("final " + linebreak(final_transcript));
-        console.log("interim " + linebreak(interim_transcript));
+        //console.log("interim " + linebreak(interim_transcript));
+        handleAnswer(interim_transcript);
     };
 }
 

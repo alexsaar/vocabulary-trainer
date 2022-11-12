@@ -75,6 +75,8 @@ footer {
 
 #vocabulary {
   display: grid;
+  column-gap: 12px;
+  row-gap: 12px;
   grid-template-columns: 1fr 1fr 1fr;
   list-style: none;
 }

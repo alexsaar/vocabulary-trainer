@@ -6,6 +6,7 @@ function showMsg(msg) {
     $('#msg').text(msg);
 }
 
+let learningStats;
 let lang = 'en-GB';
 let tab = 'Vocabulary';
 let recognizing = false;
@@ -27,14 +28,17 @@ function prepareResults(vocabulary) {
     $('#content').html("<div id='vocabulary'>"
         + "<div class='header'>Word</div>"
         + "<div class='header'>Your answer</div>"
-        + "<div class='header'>Result</div></div>");
+        + "<div class='header'>Result</div>"
+        + "<div class='header' style='display:none'>Expected</div></div>");
 
     // add vocabulary entries
     $.each(vocabulary.values.slice(1), function(i, item) {
         let voc = $('#vocabulary');
-        voc.append(`<div id=v${i} class='line word'>${item[0]}</div>`);
-        voc.append(`<div id=t${i} class='line answer'></div>`);
-        voc.append(`<div id=a${i} class='line result'>${item[1]}</div>`);
+        voc.append(`<div id=w${i} class='line word'>${item[0]}</div>`);
+        voc.append(`<div id=a${i} class='line answer'></div>`);
+        voc.append(`<div id=r${i} class='line result'></div>`);
+        voc.append(`<div id=e${i} class='line expected' style='display:none'>${item[1]}</div>`);
+        learningStats.tests++;
     });
     $('#vocabulary .word').first().css('opacity', 1);
 
@@ -56,19 +60,55 @@ function toggleSpeechRecognition() {
     ignore_onend = false;
 }
 
+function handleAnswer(answer) {
+    let i = (learningStats.index);
+
+    answer = answer.trim();
+    if (answer !== "") {
+        $("#a" + i).html(answer).css('opacity', 1);
+
+        let expected = $("#e" + i).text().trim().toLowerCase();
+        answer = $("#a" + i).text().trim().toLowerCase();
+        if (answer === expected) {
+            $("#r" + i).html("Correct!").css('opacity', 1);
+            $("#w" + (i+1)).css('opacity', 1);
+            learningStats.index++;
+            learningStats.hits++;
+            learningStats.retries = 0;
+        } else {
+            if (learningStats.retries > 3) {
+                $("#r" + i).html("Not correct!").css('opacity', 1);
+                $("#w" + (i+1)).css('opacity', 1);
+                learningStats.index++;
+                learningStats.misses++;
+                learningStats.retries = 0;
+            } else {
+                $("#r" + i).html("Try again!").css('opacity', 1);
+                learningStats.retries++;
+            }
+        }
+        if (learningStats.index == learningStats.tests) {
+            finishLearning();
+        }
+        console.log(learningStats)
+    }
+}
+
 async function startLearning() {
     showMsg("Preparing your test");
     $('#content').html("");
     
     let vocabulary = await getVocabulary();
     if (vocabulary) {
+        learningStats = { tests:0, index:0, hits:0, misses:0, retries: 0 }
         prepareResults(vocabulary)
         toggleSpeechRecognition();
     }
 }
 
 function finishLearning() {
-    showMsg("You completed your test.");
+    let percentage = learningStats.hits / learningStats.tests * 100;
+    showMsg(`Congratulations! You achieved ${percentage}% with ${learningStats.hits} correct answers out of ${learningStats.tests}.`);
     toggleSpeechRecognition();
 }
 

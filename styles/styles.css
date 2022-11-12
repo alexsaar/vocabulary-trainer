@@ -1,6 +1,7 @@
 :root {
   /* colors */
   --background-color: #eee;
+  --border-color: #888;
   --text-color: #555;
 
   /* fonts */
@@ -20,6 +21,9 @@
   --heading-font-size-s: 18px;
   --heading-font-size-xs: 12px;
 
+  /* general layout */
+  --padding: 0 40px;
+
   /* nav height */
   --nav-height: 64px;
 
@@ -28,33 +32,103 @@
 }
 
 body {
-  margin: 10px;
+  margin: 0;
   line-height: 1.6;
   color: var(--text-color);
   font-family: var(--body-font-family);
   font-weight: 400;
   font-style: normal;
+  font-size: var(--heading-font-size-m);
+  letter-spacing: 4px;
   background-color: var(--background-color);
   display: block;
 }
 
-#main {
-  margin-top: 12px;
+main {
+  padding: var(--padding);
+}
+
+footer {
+  font-size: var(--heading-font-size-xs);
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  text-align: center;
+  color: white;
+  padding: var(--padding);
+  padding-top: 8px;
+  box-sizing: border-box;
+  background-color: #888;
+  border-top: 0.5px solid var(--border-color);
+}
+
+#content {
+  margin-top: 40px;
+}
+
+#msg {
+  margin-top: 40px;
+  font-style: italic;
+  font-size: var(--heading-font-size-s);
 }
 
 #vocabulary {
   display: grid;
-  grid-gap: 12px;
   grid-template-columns: 1fr 1fr 1fr;
   list-style: none;
 }
 
+#vocabulary .line {
+  transition: opacity 1s linear;
+  opacity: 0;
+}
+
+#vocabulary .header {
+  font-weight: 600;
+}
+
 #start {
-  padding: 12px;
+  padding: 12px 24px;
+  border-radius: 4px;
+  border-width: 1px;
+  font-size: var(--heading-font-size-s);
 }
 
 #sheet {
   padding: 12px;
   margin-right: 8px;
-  width:400px;
+  width:500px;
+  border-radius: 4px;
+  border-width: 1px;
+  font-size: var(--heading-font-size-s);
+}
+
+img.mic {
+  width: 40px;
+  border-radius: 50%;
+  filter: drop-shadow(0px 0px 4px #444);
+}
+
+img.mic.pulse {
+  transform: scale(1);
+	animation: pulse 2s infinite;
+  box-shadow: 0 0 0 0 rgba(248, 23, 24, 1);
+}
+
+@keyframes pulse {
+	0% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(248, 23, 24, 0.7);
+	}
+
+	70% {
+		transform: scale(1);
+		box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+	}
+
+	100% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+	}
 }

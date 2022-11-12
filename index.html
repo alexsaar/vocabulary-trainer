@@ -17,13 +17,17 @@
         <div>
           <h1>Vocabulary Trainer</h1>
           <div>
-            <div>Please enter the URL of your public Google Sheet:</div>
-            <div><input id="sheet" value="https://docs.google.com/spreadsheets/d/1RjbVeTpYuQHtJWUvmNP9nK1xdlfkY3xojM7WPDIa66c/edit"><button id="start">Start</button></div>
+            <div>Welcome! Let's get started.</div>
+            <!-- https://docs.google.com/spreadsheets/d/1RjbVeTpYuQHtJWUvmNP9nK1xdlfkY3xojM7WPDIa66c/edit -->
+            <div><input id="sheet" type="text" value=""><button id="start">Start</button></div>
           </div>
-          <div id="main"></div>
+          <div id="msg"></div>
+          <div id="content"></div>
+          <img id="mic-on" class="mic" src="/res/img/mic-on.jpg">
         </div>
     </main>
-    <footer></footer>
+    <footer>Created with &hearts; by dad.</footer>
     <script src="/scripts/script.js"></script>
+    <script src="/scripts/speech.js"></script>
   </body>
 </html>

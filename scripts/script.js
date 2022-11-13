@@ -14,6 +14,16 @@ function shuffle(a) {
     return a;
 }
 
+function isElementInViewport(el) {
+    let rect = el.getBoundingClientRect();
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+}
+
 function showMsg(msg) {
     $('#msg').text(msg);
 }
@@ -79,8 +89,6 @@ function handleAnswer(answer) {
         $("#a" + i).html(answer).css('opacity', 1);
         
         let offset = window.scrollY + $("#a" + i).height() + 24; // don't forget to add row gap
-        console.log(offset);
-
         let expected = $("#e" + i).text().trim().toLowerCase();
         answer = $("#a" + i).text().trim().toLowerCase();
         if (answer === expected) {
@@ -106,7 +114,6 @@ function handleAnswer(answer) {
         if (learningStats.index == learningStats.tests) {
             finishLearning();
         }
-        console.log(learningStats)
     }
 }
 
@@ -143,6 +150,15 @@ $('#sheet').on("keypress", function(event) {
         startLearning();
     }
 });
+document.addEventListener('scroll', (e) => {
+    let btn = $('#start');
+    let inputs = $('#inputs');
+    if (isElementInViewport(inputs[0]) && btn.hasClass('float')) {
+        btn.removeClass('float');
+    } else if (!isElementInViewport(inputs[0]) && !btn.hasClass('float)')) {
+        btn.addClass('float');
+    }
+});  
 
 // process request params
 let params = new URLSearchParams(window.location.search)

@@ -23,9 +23,11 @@
 
   /* general layout */
   --padding: 0 40px;
+  --padding-right: 40px;
 
-  /* nav height */
+  /* nav & footer height */
   --nav-height: 64px;
+  --footer-height: 50px;
 
   /* input styling */
   --border-radius: 1px;
@@ -58,7 +60,7 @@ footer {
   position: fixed;
   bottom: 0;
   width: 100%;
-  height: 50px;
+  height: var(--footer-height);
   text-align: center;
   color: white;
   padding: var(--padding);
@@ -112,6 +114,14 @@ footer {
 
 #start {
   border-color: transparent;
+  background: transparent;
+}
+
+#start.float {
+  position: fixed;
+  bottom: 25px;
+  right: var(--padding-right);
+  z-index: 200;
 }
 
 img.mic {

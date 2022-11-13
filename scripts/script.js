@@ -132,8 +132,20 @@ async function startLearning() {
 
 function finishLearning() {
     document.body.scrollIntoView({ behavior: "smooth", block: "start" })
-    let percentage = Math.round(learningStats.hits / learningStats.tests * 100);
-    showMsg(`Congratulations! You achieved ${percentage}% with ${learningStats.hits} correct answers out of ${learningStats.tests}.`);
+    let percentage = Math.round(learningStats.hits / learningStats.index * 100);
+    if (isNaN(percentage)) {
+        percentage = 0;
+    }
+    let msg = "Well done. Try again. ";
+    if (percentage == 1) {
+        msg = "Congratulations! That was perfect. "
+    } else if (percentage > 0.8) {
+        msg = "You did great. "
+    } else if (percentage < 0.5) {
+        msg = "Try again! Next time you will do better. "
+    }
+
+    showMsg(msg + `You achieved ${percentage}% with ${learningStats.hits} correct answers out of ${learningStats.index}.`);
     toggleSpeechRecognition();
     tada.play();
 }

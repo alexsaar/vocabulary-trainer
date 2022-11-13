@@ -3,6 +3,17 @@ const API_KEY = 'AIzaSyCgyvKMsB4BSrP9fuo2Ev7o-TMDiw8BlNI';
 const API_URL = 'https://sheets.googleapis.com/v4/spreadsheets/';
 const tada = new Audio('/res/sound/tada.mp3');
 
+function shuffle(a) {
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+    }
+    return a;
+}
+
 function showMsg(msg) {
     $('#msg').text(msg);
 }
@@ -32,7 +43,7 @@ function prepareResults(vocabulary) {
         + "<div class='header' style='display:none'>Expected</div>");
 
     // add vocabulary entries
-    $.each(vocabulary.values.slice(1), function(i, item) {
+    $.each(shuffle(vocabulary.values.slice(1)), function(i, item) {
         let voc = $('#vocabulary');
         voc.append(`<div id=w${i} class='line word'>${item[0]}</div>`);
         voc.append(`<div id=a${i} class='line answer'></div>`);
@@ -107,7 +118,7 @@ async function startLearning() {
 }
 
 function finishLearning() {
-    let percentage = learningStats.hits / learningStats.tests * 100;
+    let percentage = Math.round(learningStats.hits / learningStats.tests * 100);
     showMsg(`Congratulations! You achieved ${percentage}% with ${learningStats.hits} correct answers out of ${learningStats.tests}.`);
     toggleSpeechRecognition();
     tada.play();

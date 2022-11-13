@@ -1,6 +1,6 @@
 {
-    typeAcquisition: {
-        include: [
+    "typeAcquisition": {
+        "include": [
             "jquery"
         ]
     }

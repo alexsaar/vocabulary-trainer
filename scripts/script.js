@@ -77,11 +77,15 @@ function handleAnswer(answer) {
     answer = answer.trim();
     if (answer !== "") {
         $("#a" + i).html(answer).css('opacity', 1);
+        
+        let offset = window.scrollY + $("#a" + i).height() + 24; // don't forget to add row gap
+        console.log(offset);
 
         let expected = $("#e" + i).text().trim().toLowerCase();
         answer = $("#a" + i).text().trim().toLowerCase();
         if (answer === expected) {
             $("#r" + i).html("Correct!").css('opacity', 1);
+            $('html, body').animate({ scrollTop: offset });
             $("#w" + (i+1)).css('opacity', 1);
             learningStats.index++;
             learningStats.hits++;
@@ -89,6 +93,7 @@ function handleAnswer(answer) {
         } else {
             if (learningStats.retries > 3) {
                 $("#r" + i).html("Not correct!").css('opacity', 1);
+                $('html, body').animate({ scrollTop: offset });
                 $("#w" + (i+1)).css('opacity', 1);
                 learningStats.index++;
                 learningStats.misses++;
@@ -118,6 +123,7 @@ async function startLearning() {
 }
 
 function finishLearning() {
+    document.body.scrollIntoView({ behavior: "smooth", block: "start" })
     let percentage = Math.round(learningStats.hits / learningStats.tests * 100);
     showMsg(`Congratulations! You achieved ${percentage}% with ${learningStats.hits} correct answers out of ${learningStats.tests}.`);
     toggleSpeechRecognition();

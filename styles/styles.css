@@ -31,8 +31,13 @@
   --border-radius: 1px;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
+  padding-bottom: 50px;
   /* line-height: 1.6; */
   color: var(--text-color);
   font-family: var(--body-font-family);
@@ -78,7 +83,6 @@ footer {
   column-gap: 12px;
   row-gap: 12px;
   grid-template-columns: 1fr 1fr 1fr;
-  list-style: none;
   margin-bottom: 60px;
 }
 

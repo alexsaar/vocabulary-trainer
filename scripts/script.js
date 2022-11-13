@@ -59,7 +59,7 @@ function prepareResults(vocabulary) {
         voc.append(`<div id=e${i} class='line expected' style='display:none'>${item[1]}</div>`);
         learningStats.tests++;
     });
-    $('#vocabulary .word').first().css('opacity', 1);
+    $('#vocabulary .word').first().css({'opacity': 1, 'display': 'block'});
 
     // retrieve target language
     if (vocabulary.values[0] && vocabulary.values[0][1]) {
@@ -87,28 +87,28 @@ function handleAnswer(answer) {
         if (!isNaN(answer)) {
             answer = inWords(answer);
         }
-        $("#a" + i).html(answer).css('opacity', 1);
+        $("#a" + i).html(answer).css({'opacity': 1, 'display': 'block'});
         
         let offset = window.scrollY + $("#a" + i).height() + 24; // don't forget to add row gap
         let expected = $("#e" + i).text().trim().toLowerCase();
         answer = $("#a" + i).text().trim().toLowerCase();
         if (answer === expected) {
-            $("#r" + i).html("Correct!").css('opacity', 1);
+            $("#r" + i).html("Correct!").css({'opacity': 1, 'display': 'block'});
             $('html, body').animate({ scrollTop: offset });
-            $("#w" + (i+1)).css('opacity', 1);
+            $("#w" + (i+1)).css({'opacity': 1, 'display': 'block'});
             learningStats.index++;
             learningStats.hits++;
             learningStats.retries = 0;
         } else {
             if (learningStats.retries > 3) {
-                $("#r" + i).html("Not correct!").css('opacity', 1);
+                $("#r" + i).html("Not correct!").css({'opacity': 1, 'display': 'block'});
                 $('html, body').animate({ scrollTop: offset });
-                $("#w" + (i+1)).css('opacity', 1);
+                $("#w" + (i+1)).css({'opacity': 1, 'display': 'block'});
                 learningStats.index++;
                 learningStats.misses++;
                 learningStats.retries = 0;
             } else {
-                $("#r" + i).html("Try again!").css('opacity', 1);
+                $("#r" + i).html("Try again!").css({'opacity': 1, 'display': 'block'});
                 learningStats.retries++;
             }
         }

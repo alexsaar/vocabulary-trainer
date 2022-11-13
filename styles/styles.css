@@ -90,6 +90,7 @@ footer {
 
 #vocabulary .line {
   transition: opacity 1s linear;
+  display: none;
   opacity: 0;
 }
 

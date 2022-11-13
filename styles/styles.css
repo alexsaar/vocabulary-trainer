@@ -50,7 +50,7 @@ main {
 
 footer {
   font-size: var(--heading-font-size-xs);
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100%;
   height: 50px;
@@ -79,6 +79,7 @@ footer {
   row-gap: 12px;
   grid-template-columns: 1fr 1fr 1fr;
   list-style: none;
+  margin-bottom: 60px;
 }
 
 #vocabulary .line {

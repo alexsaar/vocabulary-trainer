@@ -1,3 +1,6 @@
+import { inWords, shuffle, isElementInViewport, showMsg } from "./util.js"
+import { recognition, isRecognizing, toggleSpeechRecognition } from "./speech.js"
+
 // Google API key and URL
 const API_URL = 'https://sheets.googleapis.com/v4/spreadsheets/';
 const tada = new Audio('/res/sound/tada.mp3');
@@ -41,18 +44,6 @@ function prepareResults(vocabulary) {
     if (vocabulary.values[0] && vocabulary.values[0][1]) {
         lang = vocabulary.values[0][1];
     }
-}
-
-function toggleSpeechRecognition() {
-    // start speech recognition
-    if (recognizing) {
-        recognition.stop();
-        return;
-    }
-    final_transcript = '';
-    recognition.lang = lang;
-    recognition.start();
-    ignore_onend = false;
 }
 
 function handleAnswer(answer) {
@@ -102,7 +93,7 @@ async function startLearning() {
     if (vocabulary) {
         learningStats = { tests:0, index:0, hits:0, misses:0, retries: 0 }
         prepareResults(vocabulary)
-        toggleSpeechRecognition();
+        toggleSpeechRecognition(lang);
     }
 }
 
@@ -122,13 +113,13 @@ function finishLearning() {
     }
 
     showMsg(msg + `You achieved ${percentage}% with ${learningStats.hits} correct answers out of ${learningStats.index}.`);
-    toggleSpeechRecognition();
+    toggleSpeechRecognition(lang);
     tada.play();
 }
 
 // register listeners
 $("#start").on("click", function(event) {
-    if (recognizing) {
+    if (isRecognizing()) {
         finishLearning();
     } else {
         startLearning();
@@ -151,6 +142,9 @@ document.addEventListener('scroll', (e) => {
 
 // process request params
 let params = new URLSearchParams(window.location.search)
+if (params.has('key')) {
+    gapi_key = params.get('key');
+}
 if (params.has('tab')) {
     tab = params.get('tab');
 }
@@ -158,9 +152,8 @@ if (params.has('sheet')) {
     document.getElementById('sheet').value = params.get('sheet');
     startLearning();
 }
-if (params.has('key')) {
-    gapi_key = params.get('key');
-}
 
 // set initial focus
 $('#sheet').trigger('focus');
+
+export { handleAnswer }

@@ -38,3 +38,5 @@ function isElementInViewport(el) {
 function showMsg(msg) {
     $('#msg').text(msg);
 }
+
+export { inWords, shuffle, isElementInViewport, showMsg }

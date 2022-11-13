@@ -1,12 +1,25 @@
 // Speech Example: https://www.google.com/intl/de/chrome/demos/speech.html
 
+import { showMsg } from "./util.js"
+import { handleAnswer } from "./script.js"
+
+let recognition;
 let recognizing = false;
 let final_transcript = '';
+let ignore_onend = true;
+
+function isRecognizing () {
+    return recognizing;
+}
+
+function resetTranscript() {
+    final_transcript = '';
+}
 
 if (!('webkitSpeechRecognition' in window)) {
     showMsg('Web Speech API is not supported by this browser.');
 } else {
-    var recognition = new webkitSpeechRecognition();
+    recognition = new webkitSpeechRecognition();
     recognition.continuous = true;
     recognition.interimResults = true;
 
@@ -67,9 +80,16 @@ if (!('webkitSpeechRecognition' in window)) {
     };
 }
 
-var two_line = /\n\n/g;
-var one_line = /\n/g;
-function linebreak(s) {
-    // return s.replace(two_line, '<p></p>').replace(one_line, '<br>');
-    return s.replace(two_line, '').replace(one_line, '');
+function toggleSpeechRecognition(lang) {
+    // start speech recognition
+    if (isRecognizing()) {
+        recognition.stop();
+        return;
+    }
+    final_transcript = '';
+    recognition.lang = lang;
+    recognition.start();
+    ignore_onend = false;
 }
+
+export { recognition, isRecognizing, toggleSpeechRecognition }

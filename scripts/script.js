@@ -161,3 +161,6 @@ if (params.has('sheet')) {
 if (params.has('key')) {
     gapi_key = params.get('key');
 }
+
+// set initial focus
+$('#sheet').trigger('focus');

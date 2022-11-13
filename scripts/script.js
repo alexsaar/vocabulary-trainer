@@ -31,8 +31,6 @@ function showMsg(msg) {
 let learningStats;
 let lang = 'en-GB';
 let tab = 'Vocabulary';
-let recognizing = false;
-let final_transcript = '';
 
 async function getVocabulary() {
     let docID = $('#sheet').val().match(/\w{30,}/);
@@ -86,6 +84,9 @@ function handleAnswer(answer) {
 
     answer = answer.trim();
     if (answer !== "") {
+        if (!isNaN(answer)) {
+            answer = inWords(answer);
+        }
         $("#a" + i).html(answer).css('opacity', 1);
         
         let offset = window.scrollY + $("#a" + i).height() + 24; // don't forget to add row gap
@@ -158,7 +159,7 @@ document.addEventListener('scroll', (e) => {
     } else if (!isElementInViewport(inputs[0]) && !btn.hasClass('float)')) {
         btn.addClass('float');
     }
-});  
+});
 
 // process request params
 let params = new URLSearchParams(window.location.search)

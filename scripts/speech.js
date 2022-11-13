@@ -1,5 +1,8 @@
 // Speech Example: https://www.google.com/intl/de/chrome/demos/speech.html
 
+let recognizing = false;
+let final_transcript = '';
+
 if (!('webkitSpeechRecognition' in window)) {
     showMsg('Web Speech API is not supported by this browser.');
 } else {
@@ -55,13 +58,12 @@ if (!('webkitSpeechRecognition' in window)) {
         for (var i = event.resultIndex; i < event.results.length; ++i) {
             if (event.results[i].isFinal) {
                 final_transcript += event.results[i][0].transcript;
+                handleAnswer(final_transcript);
+                final_transcript = "";
             } else {
                 interim_transcript += event.results[i][0].transcript;
             }
         }
-        //console.log("final " + linebreak(final_transcript));
-        //console.log("interim " + linebreak(interim_transcript));
-        handleAnswer(interim_transcript);
     };
 }
 

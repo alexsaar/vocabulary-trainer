@@ -1,33 +1,8 @@
 // Google API key and URL
-const API_KEY = 'AIzaSyCgyvKMsB4BSrP9fuo2Ev7o-TMDiw8BlNI';
 const API_URL = 'https://sheets.googleapis.com/v4/spreadsheets/';
 const tada = new Audio('/res/sound/tada.mp3');
 
-function shuffle(a) {
-    var j, x, i;
-    for (i = a.length - 1; i > 0; i--) {
-        j = Math.floor(Math.random() * (i + 1));
-        x = a[i];
-        a[i] = a[j];
-        a[j] = x;
-    }
-    return a;
-}
-
-function isElementInViewport(el) {
-    let rect = el.getBoundingClientRect();
-    return (
-        rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-    );
-}
-
-function showMsg(msg) {
-    $('#msg').text(msg);
-}
-
+let gapi_key ='';
 let learningStats;
 let lang = 'en-GB';
 let tab = 'Vocabulary';
@@ -37,9 +12,10 @@ async function getVocabulary() {
     
     let result;
     try {
-        return await $.get(API_URL + docID + "/values/" + tab + "!A:B", { key: API_KEY });
+        return await $.get(API_URL + docID + "/values/" + tab + "!A:B", { key: gapi_key });
     } catch (error) {
         showMsg("Woops! Something whent wrong! Please check that you provide a valid Google Sheet URL and that your document is public.");
+        console.log(error);
     }
 }
 
@@ -181,4 +157,7 @@ if (params.has('tab')) {
 if (params.has('sheet')) {
     document.getElementById('sheet').value = params.get('sheet');
     startLearning();
+}
+if (params.has('key')) {
+    gapi_key = params.get('key');
 }

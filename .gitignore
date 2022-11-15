@@ -1,5 +1,6 @@
-# IDEs
+# IDEs & OS
 *.code-workspace
+.DS_Store
 
 # Logs
 logs

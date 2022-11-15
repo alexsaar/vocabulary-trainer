@@ -1,6 +1,7 @@
 :root {
   /* colors */
   --background-color: #eee;
+  --border-color: #888;
   --text-color: #555;
 
   /* fonts */
@@ -20,41 +21,135 @@
   --heading-font-size-s: 18px;
   --heading-font-size-xs: 12px;
 
-  /* nav height */
+  /* general layout */
+  --padding: 0 40px;
+  --padding-right: 40px;
+
+  /* nav & footer height */
   --nav-height: 64px;
+  --footer-height: 50px;
 
   /* input styling */
   --border-radius: 1px;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  margin: 10px;
-  line-height: 1.6;
+  margin: 0;
+  padding-bottom: 50px;
+  /* line-height: 1.6; */
   color: var(--text-color);
   font-family: var(--body-font-family);
   font-weight: 400;
   font-style: normal;
+  font-size: var(--heading-font-size-m);
+  letter-spacing: 4px;
   background-color: var(--background-color);
   display: block;
 }
 
-#main {
-  margin-top: 12px;
+main {
+  padding: var(--padding);
+}
+
+footer {
+  font-size: var(--heading-font-size-xs);
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: var(--footer-height);
+  text-align: center;
+  color: white;
+  padding: var(--padding);
+  padding-top: 8px;
+  box-sizing: border-box;
+  background-color: #888;
+  border-top: 0.5px solid var(--border-color);
+}
+
+#content {
+  margin: 20px 0;
+}
+
+#msg {
+  margin: 20px 0;
+  font-style: italic;
+  font-size: var(--heading-font-size-s);
 }
 
 #vocabulary {
   display: grid;
-  grid-gap: 12px;
+  column-gap: 12px;
+  row-gap: 12px;
   grid-template-columns: 1fr 1fr 1fr;
-  list-style: none;
+  margin-bottom: 60px;
 }
 
-#start {
-  padding: 12px;
+#vocabulary .line {
+  transition: opacity 1s linear;
+  display: none;
+  opacity: 0;
+}
+
+#vocabulary .header {
+  font-weight: 600;
+}
+
+#inputs {
+  display: inline-flex;
+  margin: 12px 0;
+  width: 100%;
 }
 
 #sheet {
   padding: 12px;
   margin-right: 8px;
-  width:400px;
+  width: 100%;
+  border-radius: 4px;
+  border-width: 1px;
+  font-size: var(--heading-font-size-s);
+}
+
+#start {
+  border-color: transparent;
+  background: transparent;
+}
+
+#start.float {
+  position: fixed;
+  bottom: 25px;
+  right: var(--padding-right);
+  z-index: 200;
+}
+
+img.mic {
+  width: 40px;
+  border-radius: 50%;
+  filter: drop-shadow(0px 0px 4px #444);
+}
+
+img.mic.pulse {
+  transform: scale(1);
+	animation: pulse 2s infinite;
+  box-shadow: 0 0 0 0 rgba(248, 23, 24, 1);
+}
+
+@keyframes pulse {
+	0% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(248, 23, 24, 0.7);
+	}
+
+	70% {
+		transform: scale(1);
+		box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+	}
+
+	100% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+	}
 }

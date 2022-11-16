@@ -2,4 +2,8 @@
 [![Deploy to Pages](https://github.com/alexsaar/vocabulary-trainer/actions/workflows/static.yml/badge.svg)](https://github.com/alexsaar/vocabulary-trainer/actions/workflows/static.yml)
 
 # Vocabulary Trainer
-Simple webapp for kids to learn vocabulary
+Simple webapp for kids and grown ups to learn vocabulary of a foreign language.
+
+## Hosted Version
+
+Find the hosted version at: https://alexsaar.github.io/vocabulary-trainer/

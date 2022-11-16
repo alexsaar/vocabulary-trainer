@@ -3,7 +3,7 @@ import { recognition, isRecognizing, toggleSpeechRecognition } from "./speech.js
 
 // Google API key and URL
 const API_URL = 'https://sheets.googleapis.com/v4/spreadsheets/';
-const tada = new Audio('/res/sound/tada.mp3');
+const tada = new Audio('./res/sound/tada.mp3');
 
 let gapi_key ='';
 let learningStats;

@@ -40,7 +40,6 @@ html {
 body {
   margin: 0;
   padding-bottom: 50px;
-  /* line-height: 1.6; */
   color: var(--text-color);
   font-family: var(--body-font-family);
   font-weight: 400;
@@ -128,28 +127,28 @@ footer {
 img.mic {
   width: 40px;
   border-radius: 50%;
-  filter: drop-shadow(0px 0px 4px #444);
+  filter: drop-shadow(0 0 4px #444);
 }
 
 img.mic.pulse {
   transform: scale(1);
 	animation: pulse 2s infinite;
-  box-shadow: 0 0 0 0 rgba(248, 23, 24, 1);
+  box-shadow: 0 0 0 0 rgba(248 23 24 100%);
 }
 
 @keyframes pulse {
 	0% {
 		transform: scale(0.95);
-		box-shadow: 0 0 0 0 rgba(248, 23, 24, 0.7);
+		box-shadow: 0 0 0 0 rgba(248 23 24 70%);
 	}
 
 	70% {
 		transform: scale(1);
-		box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+		box-shadow: 0 0 0 10px rgba(0 0 0 0%);
 	}
 
 	100% {
 		transform: scale(0.95);
-		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+		box-shadow: 0 0 0 0 rgba(0 0 0 0%);
 	}
 }

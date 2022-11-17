@@ -1,0 +1,31 @@
+{
+    "name": "@alexsaar/vocabulary-trainer",
+    "private": true,
+    "version": "1.0.0",
+    "description": "Vocabulary Trainer Webapp",
+    "author": "Alexander Saar",
+    "license": "Apache License 2.0",
+    "homepage": "https://github.com/alexsaar/vocabulary-trainer#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/alexsaar/vocabulary-trainer.git"
+    },
+    "bugs": {
+        "url": "https://github.com/alexsaar/vocabulary-trainer/issues"
+    },
+    "scripts": {
+        "lint:js": "eslint .",
+        "lint:css": "stylelint 'styles/*.css'",
+        "lint": "npm run lint:js && npm run lint:css"
+    },
+    "devDependencies": {
+        "eslint": "^8.27.0",
+        "eslint-config-standard": "^17.0.0",
+        "eslint-plugin-import": "^2.26.0",
+        "eslint-plugin-n": "^15.5.1",
+        "eslint-plugin-promise": "^6.1.1",
+        "stylelint": "14.10.0",
+        "stylelint-config-prettier": "9.0.3",
+        "stylelint-config-standard": "25.0.0"
+    }
+}

@@ -5,7 +5,7 @@ import { isRecognizing, toggleSpeechRecognition } from './speech.js'
 const API_URL = 'https://sheets.googleapis.com/v4/spreadsheets/'
 const tada = new Audio('./res/sound/tada.mp3')
 
-let gAPIKey = ''
+let gAPIKey = '##ADD_YOUR_API_KEY_HERE##'
 let learningStats
 let lang = 'en-GB'
 let tab = 'Vocabulary'

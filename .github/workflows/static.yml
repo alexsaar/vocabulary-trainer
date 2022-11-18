@@ -30,6 +30,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Get API Key
+        shell: bash
+        env:
+          GAPI_KEY: ${{ secrets.GAPI_KEY }}
+        run: |
+          sed -i'.orig' -e 's/##ADD_YOUR_API_KEY_HERE##/$GAPI_KEY/' scripts/script.js
+          rm -rf scripts/script.js.orig
       - name: Setup Pages
         uses: actions/configure-pages@v2
       - name: Upload artifact

@@ -31,7 +31,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Get API Key
-        shell: bash
         env:
           GAPI_KEY: ${{ secrets.GAPI_KEY }}
         run: |

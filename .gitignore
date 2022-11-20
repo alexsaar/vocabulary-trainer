@@ -1,5 +1,6 @@
 # IDEs & OS
 *.code-workspace
+.vscode
 .DS_Store
 
 # Logs

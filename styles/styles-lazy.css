@@ -41,3 +41,23 @@ img.mic.pulse {
 		box-shadow: 0 0 0 0 rgba(0 0 0 / 0%);
 	}
 }
+
+@font-face {
+  font-family:forma-djr-display;
+  src:url("https://use.typekit.net/af/360cc7/00000000000000003b9ae4d5/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff2"),url("https://use.typekit.net/af/360cc7/00000000000000003b9ae4d5/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff"),url("https://use.typekit.net/af/360cc7/00000000000000003b9ae4d5/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("opentype");
+  font-display:swap;font-style:normal;font-weight:400;font-stretch:normal;
+}
+  
+@font-face {
+  font-family:forma-djr-display;
+  src:url("https://use.typekit.net/af/96d266/00000000000000003b9ae4d6/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n5&v=3") format("woff2"),url("https://use.typekit.net/af/96d266/00000000000000003b9ae4d6/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n5&v=3") format("woff"),url("https://use.typekit.net/af/96d266/00000000000000003b9ae4d6/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n5&v=3") format("opentype");
+  font-display:swap;font-style:normal;font-weight:500;font-stretch:normal;
+}
+  
+@font-face {
+  font-family:forma-djr-display;
+  src:url("https://use.typekit.net/af/7337ff/00000000000000003b9ae4da/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("woff2"),url("https://use.typekit.net/af/7337ff/00000000000000003b9ae4da/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("woff"),url("https://use.typekit.net/af/7337ff/00000000000000003b9ae4da/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("opentype");
+  font-display:swap;font-style:normal;font-weight:700;font-stretch:normal;
+}
+  
+.tk-forma-djr-display { font-family: forma-djr-display, sans-serif; }

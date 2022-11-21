@@ -69,10 +69,6 @@ footer {
   border-top: 0.5px solid var(--border-color);
 }
 
-#content {
-  margin: 20px 0;
-}
-
 #msg {
   margin: 20px 0;
   font-style: italic;
@@ -85,16 +81,6 @@ footer {
   row-gap: 12px;
   grid-template-columns: 1fr 1fr 1fr;
   margin-bottom: 60px;
-}
-
-#vocabulary .line {
-  transition: opacity 1s linear;
-  display: none;
-  opacity: 0;
-}
-
-#vocabulary .header {
-  font-weight: 600;
 }
 
 #inputs {
@@ -117,38 +103,9 @@ footer {
   background: transparent;
 }
 
-#start.float {
-  position: fixed;
-  bottom: 25px;
-  right: var(--padding-right);
-  z-index: 200;
-}
-
 img.mic {
   width: 40px;
+  height: 40px;
   border-radius: 50%;
   filter: drop-shadow(0 0 4px #444);
-}
-
-img.mic.pulse {
-  transform: scale(1);
-	animation: pulse 2s infinite;
-  box-shadow: 0 0 0 0 rgba(248 23 24 / 100%);
-}
-
-@keyframes pulse {
-	0% {
-		transform: scale(0.95);
-		box-shadow: 0 0 0 0 rgba(248 23 24 / 70%);
-	}
-
-	70% {
-		transform: scale(1);
-		box-shadow: 0 0 0 10px rgba(0 0 0 / 0%);
-	}
-
-	100% {
-		transform: scale(0.95);
-		box-shadow: 0 0 0 0 rgba(0 0 0 / 0%);
-	}
 }
